@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SegmentedControl">
+        <attr name="segmentMaxPills" format="integer"/>
+        <attr name="segmentBackground" format="reference"/>
+        <attr name="segmentTextColor" format="color|reference"/>
+        <attr name="segmentCloseIcon" format="reference"/>
+        <attr name="segmentMarginTop" format="dimension"/>
+        <attr name="segmentMarginBottom" format="dimension"/>
+        <attr name="segmentMarginLeft" format="dimension"/>
+        <attr name="segmentMarginRight" format="dimension"/>
+        <attr name="segmentPaddingTop" format="dimension"/>
+        <attr name="segmentPaddingBottom" format="dimension"/>
+        <attr name="segmentPaddingLeft" format="dimension"/>
+        <attr name="segmentPaddingRight" format="dimension"/>
+        <attr name="segmentCloseIconMarginLeft" format="dimension"/>
+        <attr name="segmentSelectionMode">
+            <enum name="none" value="0"/>
+            <enum name="multi" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
