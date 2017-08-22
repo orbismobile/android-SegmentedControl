@@ -14,14 +14,10 @@ import android.support.v7.widget.AppCompatRadioButton;
 
 public class SegmentedControlRadioButton extends AppCompatRadioButton {
 
-    private static final int LAYOUT_TYPE_START = 0;
-    private static final int LAYOUT_TYPE_CENTER = 1;
-    private static final int LAYOUT_TYPE_END = 2;
     private int segmentTextColor;
     private int segmentCheckedTextColor;
 
-    private int segmentBgDrawable;
-    private int typeOfView = 0;
+    private int segmentBackground;
 
     public SegmentedControlRadioButton(Context context) {
         super(context);
@@ -37,19 +33,15 @@ public class SegmentedControlRadioButton extends AppCompatRadioButton {
         init(attrs, defStyleAttr, 0);
     }
 
-
     private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         final TypedArray typedArray = getContext().obtainStyledAttributes(
                 attrs, R.styleable.Segment, defStyleAttr, defStyleRes);
 
         segmentTextColor = typedArray.getColor(
-                R.styleable.Segment_segmentTextColor, ContextCompat.getColor(this.getContext(), R.color.md_teal_500));
+                R.styleable.Segment_segmentTextColor, ContextCompat.getColor(this.getContext(), R.color.md_red_500));
 
         segmentCheckedTextColor = typedArray.getColor(
                 R.styleable.Segment_segmentCheckedTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
-
-
-        typeOfView = typedArray.getInteger(R.styleable.Segment_segmentLayoutType, LAYOUT_TYPE_CENTER);
 
 
         ColorStateList colorStateList = new ColorStateList(new int[][]{
@@ -57,19 +49,9 @@ public class SegmentedControlRadioButton extends AppCompatRadioButton {
                 {android.R.attr.state_checked}},
                 new int[]{segmentTextColor, segmentCheckedTextColor});
 
-        switch (typeOfView) {
-            case LAYOUT_TYPE_START:
-                segmentBgDrawable = typedArray.getResourceId(R.styleable.Segment_segmentLayout, R.drawable.selector_segmented_control_start);
-                break;
-            case LAYOUT_TYPE_CENTER:
-                segmentBgDrawable = typedArray.getResourceId(R.styleable.Segment_segmentLayout, R.drawable.selector_segmented_control_center);
-                break;
-            case LAYOUT_TYPE_END:
-                segmentBgDrawable = typedArray.getResourceId(R.styleable.Segment_segmentLayout, R.drawable.selector_segmented_control_end);
-                break;
-        }
+        segmentBackground = typedArray.getResourceId(R.styleable.Segment_segmentBackground, R.drawable.selector_segmented_control_center);
 
-        setBackgroundResource(segmentBgDrawable);
+        setBackgroundResource(segmentBackground);
 
         setTextColor(colorStateList);
     }

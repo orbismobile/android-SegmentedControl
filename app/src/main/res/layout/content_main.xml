@@ -25,7 +25,9 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/first"
-            app:segmentLayoutType="start"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_start"
             style="@style/SegmentedControlButton"/>
 
         <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
@@ -33,6 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/second"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_center"
             style="@style/SegmentedControlButton"/>
 
         <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
@@ -40,7 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/third"
-            app:segmentLayoutType="end"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_end"
             style="@style/SegmentedControlButton"/>
     </RadioGroup>
 
