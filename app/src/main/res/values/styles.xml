@@ -17,4 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SegmentedControlButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:minWidth">80dp</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/selector_segmented_control_center</item>
+        <!--<item name="android:textColor">@drawable/selector_segment_text_color</item>-->
+    </style>
+
 </resources>
