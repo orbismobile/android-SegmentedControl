@@ -1,4 +1,4 @@
-<h1 align="center">MaterialPillsBox Widget</h1>
+<h1 align="center">SegmentedControlRadioButton Widget</h1>
 
 <p align="center">
     <a target="_blank" href="https://jitpack.io/#orbismobile/android-MaterialPills"><img src="https://jitpack.io/v/orbismobile/android-MaterialPills.svg"></a>
