@@ -1,0 +1,227 @@
+package com.orbismobile.segmentedcontrol;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by carlosleonardocamilovargashuaman on 8/23/17.
+ */
+
+public class SegmentedControl extends LinearLayout implements View.OnClickListener {
+
+    private int parentWidth;
+
+    private int numberMesure = 0;
+    private int sizeItem;
+
+
+    private static final String TAG = SegmentedControl.class.getPackage().getName();
+    private List<SegmentEntity> pillEntities = new ArrayList<>();
+
+    private int maxPills;
+    private int pillBackgroundStart;
+    private int pillFillBackgroundStart;
+    private int pillBackgroundCenter;
+    private int pillFillBackgroundCenter;
+    private int pillEndBackground;
+    private int pillEndFillBackground;
+    private int backgroundPillSelected;
+    private boolean hideCloseIcon;
+    private int pillTextColor;
+    private int pillCloseIcon;
+    private int pillMarginTop;
+    private int pillMarginBottom;
+    private int pillMarginLeft;
+    private int pillMarginRight;
+    private int selectionMode;
+
+    private int pillPaddingTop;
+    private int pillPaddingBottom;
+    private int pillPaddingLeft;
+    private int pillPaddingRight;
+
+    private int closeIconMarginLeft;
+
+    private static final int DEFAULT_MODE_MULTI_SELECTION = 1;
+    private static final int DEFAULT_MAX_PILLS = 20;
+    public OnSegmentClickListener onSegmentClickListener;
+
+    public void setOnSegmentClickListener(OnSegmentClickListener onSegmentClickListener) {
+        this.onSegmentClickListener = onSegmentClickListener;
+    }
+
+    public SegmentedControl(Context context) {
+        super(context);
+    }
+
+    public SegmentedControl(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(attrs, 0, 0);
+    }
+
+    public SegmentedControl(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs, defStyleAttr, 0);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public SegmentedControl(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(attrs, defStyleAttr, defStyleRes);
+    }
+
+    private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        final TypedArray a = getContext().obtainStyledAttributes(
+                attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
+
+        maxPills = a.getInt(
+                R.styleable.MaterialPillsBox_maxPills, DEFAULT_MAX_PILLS);
+
+        pillBackgroundStart = a.getResourceId(R.styleable.MaterialPillsBox_pillStartBackground, R.drawable.shape_button_start);
+        pillFillBackgroundStart = a.getResourceId(R.styleable.MaterialPillsBox_pillStartFillBackground, R.drawable.shape_fill_start_button);
+        pillBackgroundCenter = a.getResourceId(R.styleable.MaterialPillsBox_pillCenterBackground, R.drawable.shape_button_center);
+        pillFillBackgroundCenter = a.getResourceId(R.styleable.MaterialPillsBox_pillCenterFillBackground, R.drawable.shape_fill_center_button);
+        pillEndBackground = a.getResourceId(R.styleable.MaterialPillsBox_pillEndBackground, R.drawable.shape_button_end);
+        pillEndFillBackground = a.getResourceId(R.styleable.MaterialPillsBox_pillEndFillBackground, R.drawable.shape_fill_end_button);
+
+//        pillCloseIcon = a.getResourceId(R.styleable.MaterialPillsBox_pillCloseIcon, R.drawable.ic_close_white_18dp);
+//
+//        pillMarginTop = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//        pillMarginBottom = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillMarginBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//        pillMarginLeft = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//        pillMarginRight = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillMarginRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//        hideCloseIcon =
+//                a.getBoolean(R.styleable.MaterialPillsBox_showCloseIcon, false);
+//        pillTextColor = a.getColor(
+//                R.styleable.MaterialPillsBox_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
+//        pillPaddingTop = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillPaddingTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_top));
+//        pillPaddingBottom = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillPaddingBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_bottom));
+//        pillPaddingLeft = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillPaddingLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_left));
+//        pillPaddingRight = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillPaddingRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_right));
+//        closeIconMarginLeft = a.getDimensionPixelSize(
+//                R.styleable.MaterialPillsBox_pillCloseIconMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_close_icon_margin_left));
+
+        selectionMode = a.getInteger(R.styleable.MaterialPillsBox_pillSelectionMode, DEFAULT_MODE_MULTI_SELECTION);
+
+        a.recycle();
+    }
+
+    public int getSegmentSelectedIndex() {
+        for (int i = 0; i < pillEntities.size(); i++) {
+            if (pillEntities.get(i).isPressed()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void addList(List<SegmentEntity> pillEntities) {
+        this.pillEntities = pillEntities;
+    }
+
+    public void notifyDataSetChanged() {
+        if (parentWidth != 0) {
+            if (pillEntities.size() == 1) {
+                Log.e("Error SegmentControl", "You need at least one or more segments");
+            } else {
+                removeAllViews();
+                for (int i = 0; i < pillEntities.size(); i++) {
+                    sizeItem = parentWidth / pillEntities.size();
+                    if (i < maxPills) {
+                        Button button = setupSegmentChildView(i, (pillEntities.get(i).getMessage()), pillEntities.get(i).isPressed());
+                        addView(button);
+                        button.setTag(i);
+                    }
+                }
+            }
+        }
+    }
+
+    private Button setupSegmentChildView(int position, String message, boolean isSelected) {
+        final Button button = (Button) LayoutInflater.from(getContext()).inflate(R.layout.segment, this, false);
+        button.setText(message);
+        button.setWidth(sizeItem);
+
+
+        if (position == 0) {
+            if (isSelected) {
+                button.setBackgroundResource(pillFillBackgroundStart);
+            } else {
+                button.setBackgroundResource(pillBackgroundStart);
+            }
+        } else if (position == (pillEntities.size() - 1)) {
+            if (isSelected) {
+                button.setBackgroundResource(pillEndFillBackground);
+            } else {
+                button.setBackgroundResource(pillEndBackground);
+            }
+        } else {
+
+            if (isSelected) {
+                button.setBackgroundResource(pillFillBackgroundCenter);
+            } else {
+                button.setBackgroundResource(pillBackgroundCenter);
+            }
+        }
+
+
+        button.setOnClickListener(this);
+
+        return button;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+        if (numberMesure == 0) {
+            notifyDataSetChanged();
+            numberMesure++;
+        }
+        super.onMeasure(MeasureSpec.makeMeasureSpec(parentWidth, MeasureSpec.EXACTLY), heightMeasureSpec);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view instanceof Button) {//onClick button child
+            //view.getTag() returns the button child position
+            int pillPosition = (int) (view.getTag());
+            for (int i = 0; i < pillEntities.size(); i++) {
+                pillEntities.get(i).setPressed(false);
+            }
+
+            SegmentEntity segmentEntity = pillEntities.get(pillPosition);
+            segmentEntity.setPressed(true);
+
+            notifyDataSetChanged();
+
+            if (onSegmentClickListener != null) {
+                onSegmentClickListener.onSegmentClick(view, pillPosition);
+            }
+        }
+    }
+
+    public interface OnSegmentClickListener {
+        void onSegmentClick(View view, int position);
+    }
+
+}

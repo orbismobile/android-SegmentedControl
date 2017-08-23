@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialPillsBox">
+        <attr name="maxPills" format="integer"/>
+        <attr name="pillStartBackground" format="reference"/>
+        <attr name="pillStartFillBackground" format="reference"/>
+        <attr name="pillCenterBackground" format="reference"/>
+        <attr name="pillCenterFillBackground" format="reference"/>
+        <attr name="pillEndBackground" format="reference"/>
+        <attr name="pillEndFillBackground" format="reference"/>
+        <attr name="pillSelectedBackground" format="reference"/>
+        <attr name="pillTextColor" format="color|reference"/>
+        <attr name="showCloseIcon" format="boolean"/>
+        <attr name="pillCloseIcon" format="reference"/>
+        <attr name="pillMarginTop" format="dimension"/>
+        <attr name="pillMarginBottom" format="dimension"/>
+        <attr name="pillMarginLeft" format="dimension"/>
+        <attr name="pillMarginRight" format="dimension"/>
+        <attr name="pillPaddingTop" format="dimension"/>
+        <attr name="pillPaddingBottom" format="dimension"/>
+        <attr name="pillPaddingLeft" format="dimension"/>
+        <attr name="pillPaddingRight" format="dimension"/>
+        <attr name="pillCloseIconMarginLeft" format="dimension"/>
+        <attr name="pillSelectionMode">
+            <enum name="none" value="0"/>
+            <enum name="multi" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

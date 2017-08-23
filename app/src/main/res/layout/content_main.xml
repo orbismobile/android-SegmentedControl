@@ -8,47 +8,18 @@
     tools:context="com.orbismobile.segmentedcontroldemo.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <RadioGroup
-        android:id="@+id/rgSelection"
-        android:layout_width="wrap_content"
+    <com.orbismobile.segmentedcontrol.SegmentedControl
+        android:id="@+id/scGeneral"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
-            android:id="@+id/opt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/first"
-            app:segmentTextColor="@color/md_blue_500"
-            app:segmentCheckedTextColor="@color/md_white_1000"
-            app:segmentBackground="@drawable/selector_segmented_control_start"
-            style="@style/SegmentedControlButton"/>
-
-        <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
-            android:id="@+id/opt_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/second"
-            app:segmentTextColor="@color/md_blue_500"
-            app:segmentCheckedTextColor="@color/md_white_1000"
-            app:segmentBackground="@drawable/selector_segmented_control_center"
-            style="@style/SegmentedControlButton"/>
-
-        <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
-            android:id="@+id/opt_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/third"
-            app:segmentTextColor="@color/md_blue_500"
-            app:segmentCheckedTextColor="@color/md_white_1000"
-            app:segmentBackground="@drawable/selector_segmented_control_end"
-            style="@style/SegmentedControlButton"/>
-    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
