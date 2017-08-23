@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="MaterialPillsBox">
+    <declare-styleable name="SegmentedControl">
         <attr name="maxPills" format="integer"/>
-        <attr name="pillStartBackground" format="reference"/>
-        <attr name="pillStartFillBackground" format="reference"/>
-        <attr name="pillCenterBackground" format="reference"/>
-        <attr name="pillCenterFillBackground" format="reference"/>
-        <attr name="pillEndBackground" format="reference"/>
-        <attr name="pillEndFillBackground" format="reference"/>
-        <attr name="pillSelectedBackground" format="reference"/>
-        <attr name="pillTextColor" format="color|reference"/>
+        <attr name="segmentStartBackground" format="reference"/>
+        <attr name="segmentStartFillBackground" format="reference"/>
+        <attr name="segmentCenterBackground" format="reference"/>
+        <attr name="segmentCenterFillBackground" format="reference"/>
+        <attr name="segmentEndBackground" format="reference"/>
+        <attr name="segmentEndFillBackground" format="reference"/>
+        <attr name="segmentSelectedBackground" format="reference"/>
+        <attr name="segmentTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
-        <attr name="pillCloseIcon" format="reference"/>
-        <attr name="pillMarginTop" format="dimension"/>
-        <attr name="pillMarginBottom" format="dimension"/>
-        <attr name="pillMarginLeft" format="dimension"/>
-        <attr name="pillMarginRight" format="dimension"/>
-        <attr name="pillPaddingTop" format="dimension"/>
-        <attr name="pillPaddingBottom" format="dimension"/>
-        <attr name="pillPaddingLeft" format="dimension"/>
-        <attr name="pillPaddingRight" format="dimension"/>
-        <attr name="pillCloseIconMarginLeft" format="dimension"/>
-        <attr name="pillSelectionMode">
+        <attr name="segmentCloseIcon" format="reference"/>
+        <attr name="segmentMarginTop" format="dimension"/>
+        <attr name="segmentMarginBottom" format="dimension"/>
+        <attr name="segmentMarginLeft" format="dimension"/>
+        <attr name="segmentMarginRight" format="dimension"/>
+        <attr name="segmentPaddingTop" format="dimension"/>
+        <attr name="segmentPaddingBottom" format="dimension"/>
+        <attr name="segmentPaddingLeft" format="dimension"/>
+        <attr name="segmentPaddingRight" format="dimension"/>
+        <attr name="segmentCloseIconMarginLeft" format="dimension"/>
+        <attr name="segmentSelectionMode">
             <enum name="none" value="0"/>
             <enum name="multi" value="1"/>
         </attr>

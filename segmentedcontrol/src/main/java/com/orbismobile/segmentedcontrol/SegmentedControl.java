@@ -84,44 +84,44 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
 
     private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
+                attrs, R.styleable.SegmentedControl, defStyleAttr, defStyleRes);
 
         maxPills = a.getInt(
-                R.styleable.MaterialPillsBox_maxPills, DEFAULT_MAX_PILLS);
+                R.styleable.SegmentedControl_maxPills, DEFAULT_MAX_PILLS);
 
-        pillBackgroundStart = a.getResourceId(R.styleable.MaterialPillsBox_pillStartBackground, R.drawable.shape_button_start);
-        pillFillBackgroundStart = a.getResourceId(R.styleable.MaterialPillsBox_pillStartFillBackground, R.drawable.shape_fill_start_button);
-        pillBackgroundCenter = a.getResourceId(R.styleable.MaterialPillsBox_pillCenterBackground, R.drawable.shape_button_center);
-        pillFillBackgroundCenter = a.getResourceId(R.styleable.MaterialPillsBox_pillCenterFillBackground, R.drawable.shape_fill_center_button);
-        pillEndBackground = a.getResourceId(R.styleable.MaterialPillsBox_pillEndBackground, R.drawable.shape_button_end);
-        pillEndFillBackground = a.getResourceId(R.styleable.MaterialPillsBox_pillEndFillBackground, R.drawable.shape_fill_end_button);
+        pillBackgroundStart = a.getResourceId(R.styleable.SegmentedControl_segmentStartBackground, R.drawable.shape_segment_start);
+        pillFillBackgroundStart = a.getResourceId(R.styleable.SegmentedControl_segmentStartFillBackground, R.drawable.shape_fill_segment_start);
+        pillBackgroundCenter = a.getResourceId(R.styleable.SegmentedControl_segmentCenterBackground, R.drawable.shape_segment_center);
+        pillFillBackgroundCenter = a.getResourceId(R.styleable.SegmentedControl_segmentCenterFillBackground, R.drawable.shape_fill_segment_center);
+        pillEndBackground = a.getResourceId(R.styleable.SegmentedControl_segmentEndBackground, R.drawable.shape_segment_end);
+        pillEndFillBackground = a.getResourceId(R.styleable.SegmentedControl_segmentEndFillBackground, R.drawable.shape_fill_segment_end);
 
-//        pillCloseIcon = a.getResourceId(R.styleable.MaterialPillsBox_pillCloseIcon, R.drawable.ic_close_white_18dp);
+//        pillCloseIcon = a.getResourceId(R.styleable.SegmentedControl_pillCloseIcon, R.drawable.ic_close_white_18dp);
 //
 //        pillMarginTop = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//                R.styleable.SegmentedControl_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        pillMarginBottom = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillMarginBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//                R.styleable.SegmentedControl_pillMarginBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        pillMarginLeft = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//                R.styleable.SegmentedControl_pillMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        pillMarginRight = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillMarginRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
+//                R.styleable.SegmentedControl_pillMarginRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        hideCloseIcon =
-//                a.getBoolean(R.styleable.MaterialPillsBox_showCloseIcon, false);
+//                a.getBoolean(R.styleable.SegmentedControl_showCloseIcon, false);
 //        pillTextColor = a.getColor(
-//                R.styleable.MaterialPillsBox_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
+//                R.styleable.SegmentedControl_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
 //        pillPaddingTop = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillPaddingTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_top));
+//                R.styleable.SegmentedControl_pillPaddingTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_top));
 //        pillPaddingBottom = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillPaddingBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_bottom));
+//                R.styleable.SegmentedControl_pillPaddingBottom, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_bottom));
 //        pillPaddingLeft = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillPaddingLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_left));
+//                R.styleable.SegmentedControl_pillPaddingLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_left));
 //        pillPaddingRight = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillPaddingRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_right));
+//                R.styleable.SegmentedControl_pillPaddingRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_right));
 //        closeIconMarginLeft = a.getDimensionPixelSize(
-//                R.styleable.MaterialPillsBox_pillCloseIconMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_close_icon_margin_left));
+//                R.styleable.SegmentedControl_pillCloseIconMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_close_icon_margin_left));
 
-        selectionMode = a.getInteger(R.styleable.MaterialPillsBox_pillSelectionMode, DEFAULT_MODE_MULTI_SELECTION);
+        selectionMode = a.getInteger(R.styleable.SegmentedControl_segmentSelectionMode, DEFAULT_MODE_MULTI_SELECTION);
 
         a.recycle();
     }
