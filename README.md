@@ -10,9 +10,7 @@
 
 <p align="center">
     <img src="Screenshots/Screenshot1.png" alt="icon" width="22%"/>
-    <img src="Screenshots/Screenshot2.png" alt="icon" width="22%"/>
-    <img src="Screenshots/Screenshot3.png" alt="icon" width="22%"/>
-    <img src="Screenshots/Screenshot4.png" alt="icon" width="22%"/>
+   
 </p>
 
 MaterialPillsBox is a widget that allows you to implement a list of any objects
@@ -61,7 +59,9 @@ android {
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/first"
-            app:segmentLayoutType="start"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_start"
             style="@style/SegmentedControlButton"/>
 
         <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
@@ -69,6 +69,9 @@ android {
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/second"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_center"
             style="@style/SegmentedControlButton"/>
 
         <com.orbismobile.segmentedcontrol.SegmentedControlRadioButton
@@ -76,7 +79,9 @@ android {
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/third"
-            app:segmentLayoutType="end"
+            app:segmentTextColor="@color/md_blue_500"
+            app:segmentCheckedTextColor="@color/md_white_1000"
+            app:segmentBackground="@drawable/selector_segmented_control_end"
             style="@style/SegmentedControlButton"/>
     </RadioGroup>
 ```
@@ -86,20 +91,14 @@ android {
 # Setup
 For using the SegmentedControlRadioButon widget in your Activity, just implement it inside a RadioGroup widget xml layout
 
-
-# The PillEntity class                          
-Any of your entities have to extend the `PillEntity` class(this is the baseEntity). This class contains 
-3 basic attributes which are: 
-
-* id(int): Unique Id for your pill
-* message(String): Message to show in the pill
-* pressed(boolean): State of the pill.
-
 # Main Properties
 
-##### segmentLayoutType
-    The maximum number of pills, the default value is 20
-
+##### segmentTextColor
+    The unchecked text color for the radio button
+##### segmentCheckedTextColor
+    The checked text color for the radio button
+##### segmentBackground
+    The shape drawable for the radio button
 
 License
 =======
