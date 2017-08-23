@@ -5,6 +5,7 @@ import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-        RadioButton selected = radioGroup.findViewById(i);
+        RadioButton selected = (RadioButton) radioGroup.findViewById(i);
         Toast.makeText(this, "selected: " + selected.getText(), Toast.LENGTH_SHORT).show();
     }
 }
