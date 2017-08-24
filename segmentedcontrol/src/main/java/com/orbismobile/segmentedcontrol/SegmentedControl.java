@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +41,8 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
     private int pillEndFillBackground;
     private int backgroundPillSelected;
     private boolean hideCloseIcon;
-    private int pillTextColor;
+    private int segmentTextColor;
+    private int segmentSelectedTextColor;
     private int pillCloseIcon;
     private int pillMarginTop;
     private int pillMarginBottom;
@@ -109,8 +111,11 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
 //                R.styleable.SegmentedControl_pillMarginRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        hideCloseIcon =
 //                a.getBoolean(R.styleable.SegmentedControl_showCloseIcon, false);
-//        pillTextColor = a.getColor(
-//                R.styleable.SegmentedControl_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
+        segmentTextColor = a.getColor(
+                R.styleable.SegmentedControl_segmentTextColor, ContextCompat.getColor(this.getContext(), R.color.md_blue_500));
+        segmentSelectedTextColor = a.getColor(
+                R.styleable.SegmentedControl_segmentSelectedTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
+
 //        pillPaddingTop = a.getDimensionPixelSize(
 //                R.styleable.SegmentedControl_pillPaddingTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_top));
 //        pillPaddingBottom = a.getDimensionPixelSize(
@@ -165,28 +170,32 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
         button.setText(message);
         button.setWidth(sizeItem);
 
-
         if (position == 0) {
             if (isSelected) {
+                button.setTextColor(segmentSelectedTextColor);
                 button.setBackgroundResource(pillFillBackgroundStart);
             } else {
+                button.setTextColor(segmentTextColor);
                 button.setBackgroundResource(pillBackgroundStart);
             }
         } else if (position == (objectList.size() - 1)) {
             if (isSelected) {
+                button.setTextColor(segmentSelectedTextColor);
                 button.setBackgroundResource(pillEndFillBackground);
             } else {
+                button.setTextColor(segmentTextColor);
                 button.setBackgroundResource(pillEndBackground);
             }
         } else {
 
             if (isSelected) {
+                button.setTextColor(segmentSelectedTextColor);
                 button.setBackgroundResource(pillFillBackgroundCenter);
             } else {
+                button.setTextColor(segmentTextColor);
                 button.setBackgroundResource(pillBackgroundCenter);
             }
         }
-
 
         button.setOnClickListener(this);
 

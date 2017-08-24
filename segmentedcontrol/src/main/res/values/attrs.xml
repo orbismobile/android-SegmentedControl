@@ -10,6 +10,7 @@
         <attr name="segmentEndFillBackground" format="reference"/>
         <attr name="segmentSelectedBackground" format="reference"/>
         <attr name="segmentTextColor" format="color|reference"/>
+        <attr name="segmentSelectedTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
         <attr name="segmentCloseIcon" format="reference"/>
         <attr name="segmentMarginTop" format="dimension"/>
