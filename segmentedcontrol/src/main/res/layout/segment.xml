@@ -6,4 +6,5 @@
     android:maxLines="1"
     android:ellipsize="end"
     android:textSize="@dimen/default_segment_text_size"
+    android:gravity="center"
     android:textAllCaps="false"/>

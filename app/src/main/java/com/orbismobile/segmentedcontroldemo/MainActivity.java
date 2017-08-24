@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements SegmentedControl.
 
     @Override
     public void onSegmentClick(View view, int position) {
-        Toast.makeText(this, "id: " +((UserSegmentEntity)segmentEntities.get(position)).getName(), Toast.LENGTH_SHORT).show();
+        if(view.getId() == R.id.scGeneral){
+            Toast.makeText(this, "id: " +((UserSegmentEntity)segmentEntities.get(position)).getName(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

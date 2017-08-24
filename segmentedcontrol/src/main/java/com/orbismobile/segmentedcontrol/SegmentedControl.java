@@ -227,7 +227,7 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
             notifyDataSetChanged();
 
             if (onSegmentClickListener != null) {
-                onSegmentClickListener.onSegmentClick(view, pillPosition);
+                onSegmentClickListener.onSegmentClick(this, pillPosition);
             }
         }
     }
