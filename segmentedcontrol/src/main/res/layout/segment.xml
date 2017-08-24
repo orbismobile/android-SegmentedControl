@@ -4,4 +4,6 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:maxLines="1"
-    android:ellipsize="end"/>
+    android:ellipsize="end"
+    android:textSize="@dimen/default_segment_text_size"
+    android:textAllCaps="false"/>

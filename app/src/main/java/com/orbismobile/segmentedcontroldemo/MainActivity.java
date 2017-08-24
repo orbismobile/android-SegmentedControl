@@ -19,8 +19,8 @@ import com.orbismobile.segmentedcontrol.SegmentedControl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, SegmentedControl.OnSegmentClickListener {
-
+public class MainActivity extends AppCompatActivity implements SegmentedControl.OnSegmentClickListener {
+    List<Object> segmentEntities;
     SegmentedControl scGeneral;
 
     @Override
@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         setSupportActionBar(toolbar);
         scGeneral = (SegmentedControl) findViewById(R.id.scGeneral);
 
-        List<SegmentEntity> segmentEntities = new ArrayList<>();
-        segmentEntities.add(new SegmentEntity("Carlos", false));
-        segmentEntities.add(new SegmentEntity("Carlos2", false));
-        segmentEntities.add(new SegmentEntity("Carlos3", false));
-        segmentEntities.add(new SegmentEntity("Carlos4", false));
-        segmentEntities.add(new SegmentEntity("Carlos5", false));
+        segmentEntities = new ArrayList<>();
+        segmentEntities.add(new UserSegmentEntity(1, "Carlos", false, "carlos"));
+        segmentEntities.add(new UserSegmentEntity(2, "Carlos2", false, "carlos2"));
+        segmentEntities.add(new UserSegmentEntity(3, "Carlos3", false, "carlos3"));
+        segmentEntities.add(new UserSegmentEntity(4, "Carlos4", false, "carlos4"));
+        segmentEntities.add(new UserSegmentEntity(5, "Carlos5", false, "carlos5"));
 
         scGeneral.addList(segmentEntities);
 
@@ -75,13 +75,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-        RadioButton selected = (RadioButton) radioGroup.findViewById(i);
-        Toast.makeText(this, "selected: " + selected.getText(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onSegmentClick(View view, int position) {
-        Toast.makeText(this, "position: " +position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "id: " +((UserSegmentEntity)segmentEntities.get(position)).getName(), Toast.LENGTH_SHORT).show();
     }
 }

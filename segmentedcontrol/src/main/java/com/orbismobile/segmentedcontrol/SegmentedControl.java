@@ -28,7 +28,8 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
 
 
     private static final String TAG = SegmentedControl.class.getPackage().getName();
-    private List<SegmentEntity> pillEntities = new ArrayList<>();
+    //private List<SegmentEntity> pillEntities = new ArrayList<>();
+    private List<Object> objectList = new ArrayList<>();
 
     private int maxPills;
     private int pillBackgroundStart;
@@ -127,28 +128,30 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
     }
 
     public int getSegmentSelectedIndex() {
-        for (int i = 0; i < pillEntities.size(); i++) {
-            if (pillEntities.get(i).isPressed()) {
+        for (int i = 0; i < objectList.size(); i++) {
+            if (((SegmentEntity)objectList.get(i)).isPressed()) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void addList(List<SegmentEntity> pillEntities) {
-        this.pillEntities = pillEntities;
+    public void addList(List<Object> objectList) {
+        this.objectList = objectList;
     }
 
     public void notifyDataSetChanged() {
         if (parentWidth != 0) {
-            if (pillEntities.size() == 1) {
+            if (objectList.size() == 1) {
                 Log.e("Error SegmentControl", "You need at least one or more segments");
             } else {
                 removeAllViews();
-                for (int i = 0; i < pillEntities.size(); i++) {
-                    sizeItem = parentWidth / pillEntities.size();
+                for (int i = 0; i < objectList.size(); i++) {
+                    sizeItem = parentWidth / objectList.size();
                     if (i < maxPills) {
-                        Button button = setupSegmentChildView(i, (pillEntities.get(i).getMessage()), pillEntities.get(i).isPressed());
+                        Button button = setupSegmentChildView(i,
+                                ((SegmentEntity)objectList.get(i)).getMessage(),
+                                ((SegmentEntity)objectList.get(i)).isPressed());
                         addView(button);
                         button.setTag(i);
                     }
@@ -169,7 +172,7 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
             } else {
                 button.setBackgroundResource(pillBackgroundStart);
             }
-        } else if (position == (pillEntities.size() - 1)) {
+        } else if (position == (objectList.size() - 1)) {
             if (isSelected) {
                 button.setBackgroundResource(pillEndFillBackground);
             } else {
@@ -205,11 +208,11 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
         if (view instanceof Button) {//onClick button child
             //view.getTag() returns the button child position
             int pillPosition = (int) (view.getTag());
-            for (int i = 0; i < pillEntities.size(); i++) {
-                pillEntities.get(i).setPressed(false);
+            for (int i = 0; i < objectList.size(); i++) {
+                ((SegmentEntity)objectList.get(i)).setPressed(false);
             }
 
-            SegmentEntity segmentEntity = pillEntities.get(pillPosition);
+            SegmentEntity segmentEntity = (SegmentEntity) objectList.get(pillPosition);
             segmentEntity.setPressed(true);
 
             notifyDataSetChanged();
