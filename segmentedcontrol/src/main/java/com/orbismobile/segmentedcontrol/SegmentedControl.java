@@ -24,38 +24,27 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
 
     private int parentWidth;
 
-    private int numberMesure = 0;
+    private boolean onlyFirstTime = true;
     private int sizeItem;
 
 
     private static final String TAG = SegmentedControl.class.getPackage().getName();
-    //private List<SegmentEntity> pillEntities = new ArrayList<>();
     private List<Object> objectList = new ArrayList<>();
 
     private int maxPills;
-    private int pillBackgroundStart;
-    private int pillFillBackgroundStart;
-    private int pillBackgroundCenter;
-    private int pillFillBackgroundCenter;
-    private int pillEndBackground;
-    private int pillEndFillBackground;
-    private int backgroundPillSelected;
-    private boolean hideCloseIcon;
+    private int segmentCheckedBackgroundStart;
+    private int segmentCheckedBackgroundCenter;
+    private int segmentCheckedBackgroundEnd;
     private int segmentTextColor;
     private int segmentSelectedTextColor;
-    private int pillCloseIcon;
-    private int pillMarginTop;
-    private int pillMarginBottom;
-    private int pillMarginLeft;
-    private int pillMarginRight;
+
+
+    private int segmentSelectorCenter;
+    private int segmentSelectorStart;
+    private int segmentSelectorEnd;
+
     private int selectionMode;
 
-    private int pillPaddingTop;
-    private int pillPaddingBottom;
-    private int pillPaddingLeft;
-    private int pillPaddingRight;
-
-    private int closeIconMarginLeft;
 
     private static final int DEFAULT_MODE_MULTI_SELECTION = 1;
     private static final int DEFAULT_MAX_PILLS = 20;
@@ -92,15 +81,14 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
         maxPills = a.getInt(
                 R.styleable.SegmentedControl_maxPills, DEFAULT_MAX_PILLS);
 
-        pillBackgroundStart = a.getResourceId(R.styleable.SegmentedControl_segmentStartBackground, R.drawable.shape_segment_start);
-        pillFillBackgroundStart = a.getResourceId(R.styleable.SegmentedControl_segmentStartFillBackground, R.drawable.shape_fill_segment_start);
-        pillBackgroundCenter = a.getResourceId(R.styleable.SegmentedControl_segmentCenterBackground, R.drawable.shape_segment_center);
-        pillFillBackgroundCenter = a.getResourceId(R.styleable.SegmentedControl_segmentCenterFillBackground, R.drawable.shape_fill_segment_center);
-        pillEndBackground = a.getResourceId(R.styleable.SegmentedControl_segmentEndBackground, R.drawable.shape_segment_end);
-        pillEndFillBackground = a.getResourceId(R.styleable.SegmentedControl_segmentEndFillBackground, R.drawable.shape_fill_segment_end);
+        segmentSelectorStart = a.getResourceId(R.styleable.SegmentedControl_segmentSelectorStartBackground, R.drawable.selector_segment_start);
+        segmentCheckedBackgroundStart = a.getResourceId(R.styleable.SegmentedControl_segmentStartFillBackground, R.drawable.shape_segment_start_checked);
+        segmentSelectorCenter = a.getResourceId(R.styleable.SegmentedControl_segmentSelectorCenterBackground, R.drawable.selector_segment_center);
+        segmentCheckedBackgroundCenter = a.getResourceId(R.styleable.SegmentedControl_segmentCenterFillBackground, R.drawable.shape_segment_center_checked);
+        segmentSelectorEnd = a.getResourceId(R.styleable.SegmentedControl_segmentSelectorEndBackground, R.drawable.selector_segment_end);
+        segmentCheckedBackgroundEnd = a.getResourceId(R.styleable.SegmentedControl_segmentEndFillBackground, R.drawable.shape_segment_end_checked);
 
-//        pillCloseIcon = a.getResourceId(R.styleable.SegmentedControl_pillCloseIcon, R.drawable.ic_close_white_18dp);
-//
+
 //        pillMarginTop = a.getDimensionPixelSize(
 //                R.styleable.SegmentedControl_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
 //        pillMarginBottom = a.getDimensionPixelSize(
@@ -134,7 +122,7 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
 
     public int getSegmentSelectedIndex() {
         for (int i = 0; i < objectList.size(); i++) {
-            if (((SegmentEntity)objectList.get(i)).isPressed()) {
+            if (((SegmentEntity) objectList.get(i)).isPressed()) {
                 return i;
             }
         }
@@ -155,8 +143,8 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
                     sizeItem = parentWidth / objectList.size();
                     if (i < maxPills) {
                         Button button = setupSegmentChildView(i,
-                                ((SegmentEntity)objectList.get(i)).getMessage(),
-                                ((SegmentEntity)objectList.get(i)).isPressed());
+                                ((SegmentEntity) objectList.get(i)).getMessage(),
+                                ((SegmentEntity) objectList.get(i)).isPressed());
                         addView(button);
                         button.setTag(i);
                     }
@@ -170,44 +158,41 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
         button.setText(message);
         button.setWidth(sizeItem);
 
+        if (isSelected) {
+            button.setTextColor(segmentSelectedTextColor);
+        } else {
+            button.setTextColor(segmentTextColor);
+        }
+
         if (position == 0) {
             if (isSelected) {
-                button.setTextColor(segmentSelectedTextColor);
-                button.setBackgroundResource(pillFillBackgroundStart);
+                button.setBackgroundResource(segmentCheckedBackgroundStart);
             } else {
-                button.setTextColor(segmentTextColor);
-                button.setBackgroundResource(pillBackgroundStart);
+                button.setBackgroundResource(segmentSelectorStart);
             }
         } else if (position == (objectList.size() - 1)) {
             if (isSelected) {
-                button.setTextColor(segmentSelectedTextColor);
-                button.setBackgroundResource(pillEndFillBackground);
+                button.setBackgroundResource(segmentCheckedBackgroundEnd);
             } else {
-                button.setTextColor(segmentTextColor);
-                button.setBackgroundResource(pillEndBackground);
+                button.setBackgroundResource(segmentSelectorEnd);
             }
         } else {
-
             if (isSelected) {
-                button.setTextColor(segmentSelectedTextColor);
-                button.setBackgroundResource(pillFillBackgroundCenter);
+                button.setBackgroundResource(segmentCheckedBackgroundCenter);
             } else {
-                button.setTextColor(segmentTextColor);
-                button.setBackgroundResource(pillBackgroundCenter);
+                button.setBackgroundResource(segmentSelectorCenter);
             }
         }
-
         button.setOnClickListener(this);
-
         return button;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         parentWidth = MeasureSpec.getSize(widthMeasureSpec);
-        if (numberMesure == 0) {
+        if (onlyFirstTime) {
             notifyDataSetChanged();
-            numberMesure++;
+            onlyFirstTime = false;
         }
         super.onMeasure(MeasureSpec.makeMeasureSpec(parentWidth, MeasureSpec.EXACTLY), heightMeasureSpec);
     }
@@ -218,7 +203,7 @@ public class SegmentedControl extends LinearLayout implements View.OnClickListen
             //view.getTag() returns the button child position
             int pillPosition = (int) (view.getTag());
             for (int i = 0; i < objectList.size(); i++) {
-                ((SegmentEntity)objectList.get(i)).setPressed(false);
+                ((SegmentEntity) objectList.get(i)).setPressed(false);
             }
 
             SegmentEntity segmentEntity = (SegmentEntity) objectList.get(pillPosition);

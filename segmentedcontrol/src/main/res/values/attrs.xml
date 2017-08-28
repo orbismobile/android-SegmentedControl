@@ -2,11 +2,11 @@
 <resources>
     <declare-styleable name="SegmentedControl">
         <attr name="maxPills" format="integer"/>
-        <attr name="segmentStartBackground" format="reference"/>
+        <attr name="segmentSelectorStartBackground" format="reference"/>
         <attr name="segmentStartFillBackground" format="reference"/>
-        <attr name="segmentCenterBackground" format="reference"/>
+        <attr name="segmentSelectorCenterBackground" format="reference"/>
         <attr name="segmentCenterFillBackground" format="reference"/>
-        <attr name="segmentEndBackground" format="reference"/>
+        <attr name="segmentSelectorEndBackground" format="reference"/>
         <attr name="segmentEndFillBackground" format="reference"/>
         <attr name="segmentSelectedBackground" format="reference"/>
         <attr name="segmentTextColor" format="color|reference"/>
